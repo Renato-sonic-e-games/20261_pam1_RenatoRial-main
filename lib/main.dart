@@ -30,15 +30,33 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-   Widget _buildContactItem(IconData icon, String text) {
-    return ListTile(
-      leading: Icon(icon),
-      title: Text(text),
-    );
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Etec Adolpho Berezin - PAM1'),
+        backgroundColor: Colors.redAccent,
+        centerTitle: true,
+        elevation: 10,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(30))
+        ),
+
+      ),
+
+      drawer: Drawer(
+      child: const Center(
+      child: Text("Menu"),
+      ),
+      backgroundColor: const Color.fromARGB(255, 153, 142, 142),  
+      ),
+
+      endDrawer: Drawer(
+      child: const Center(
+      child: Text("Configurações"),
+      ),
+      backgroundColor: const Color.fromARGB(255, 117, 109, 109),
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),
 
@@ -96,9 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Icons.web,
               '@renatorial',
             ),
-
             const Divider(),
-
             const SizedBox(height: 20),
 
             const Align(
@@ -164,7 +180,22 @@ class _MyHomePageState extends State<MyHomePage> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          print('Botão Flutuante Pressionado');
         },
+        backgroundColor: Colors.redAccent,
+        child: const Icon(Icons.add, color: Colors.white),
+      ),
+    );
+  }
+  Widget _buildContactItem(IconData icone, String texto){
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: Row(
+        children: [
+          Icon(icone, color: Colors.redAccent, size: 20),
+          const SizedBox(width: 15),
+          Text(texto, style: const TextStyle(fontSize: 16)),
+        ],
       ),
     );
   }
