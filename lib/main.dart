@@ -3,17 +3,16 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(const MyApp());
 }
-//bla
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -31,46 +30,141 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+   Widget _buildContactItem(IconData icon, String text) {
+    return ListTile(
+      leading: Icon(icon),
+      title: Text(text),
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // header do aplicativo
-      appBar: AppBar(  // construtor da classe AppBar
-        title: const Text('Etec Adolpho Berezin - PAM1'), // titulo do header
-          backgroundColor: Colors.redAccent, // cor de fundo do header
-      ),
-      //menu lateral esquerdo
-      drawer: Drawer( // construtor da classe Drawer
-      child: const Center( // centraliza o texto
-      child: Text("Menu esquerdo"), // conteudo interno
-      ),
-      backgroundColor: Colors.redAccent, // cor de fundo
-      ),
-      //menu lateral direito
-      endDrawer: Drawer( // construtor da classe Drawer (do lado direito do scaffold)
-      child: const Center( // centraliza o texto
-      child: Text("Menu direito"), // conteudo interno
-      ), 
-      backgroundColor: Colors.redAccent, // cor de fundo
-      ),
-      // footer
-      bottomNavigationBar: BottomAppBar( // construtor da classe BottomAppBar
-        color: Colors.redAccent, // cor de fundo
-        child: const Text("Desenvolvimento Mobile com Flutter") // conteudo interno
-      ),
-      //botão flutuante
-      floatingActionButton: FloatingActionButton( // construtor da classe FloatingActionButton
-        onPressed: () {}, // ação do botão
-        child: const Icon(Icons.add), // ícone do botão
-      ),
-      body: const Center(
-        child: Text(
-          'Desenvolvimento Mobile com Flutter',
-        style: TextStyle (
-          fontSize: 12,
-          color: Colors.blueGrey,
-          ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20.0),
+
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+
+            const CircleAvatar(
+              radius: 60, 
+              backgroundColor: Colors.redAccent, 
+
+              child: CircleAvatar(
+                radius: 56, 
+
+                backgroundImage: NetworkImage(
+                  'https://github.com/Renato-sonic-e-games.png',
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 15),
+
+            const Text(
+              'Renato Rial Gonçalves',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+
+            const Text(
+              '16 anos, Mongaguá - SP',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.blueGrey,
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            const Divider(),
+
+            _buildContactItem(
+              Icons.email,
+              'aluno@etec.sp.gov.br',
+            ),
+
+            _buildContactItem(
+              Icons.phone,
+              '(67) 71111-7799',
+            ),
+
+            _buildContactItem(
+              Icons.web,
+              '@renatorial',
+            ),
+
+            const Divider(),
+
+            const SizedBox(height: 20),
+
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Resumo',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.redAccent,
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 10),
+
+            const Text(
+              'Aluno do curso de Desenvolvimento de Sistemas.',
+              textAlign: TextAlign.justify,
+              style: TextStyle(fontSize: 16),
+            ),
+
+            const SizedBox(height: 25),
+
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Objetivo',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.redAccent,
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 10),
+
+            const Text(
+              'Busco uma oportunidade na área de desenvolvimento de software, onde possa aplicar meus conhecimentos e contribuir para o crescimento da empresa.',
+              textAlign: TextAlign.justify,
+              style: TextStyle(
+                fontSize: 16,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          ],
         ),
+      ),
+
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Início',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.info),
+            label: 'Sobre',
+          ),
+        ],
+      ),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+        },
       ),
     );
   }
